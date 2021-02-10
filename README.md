@@ -16,3 +16,10 @@ func host start --verbose
 The debugger will try to attach to your vs instance.
 ```
 
+### How to run in a devcontainer:
+
+- Open vscode
+- Install the `Remote - Container` extension
+- Re-open the directory in a container `Remote - Containers: Open folder in Container`
+
+Now you can execute the same commands as in How to run

@@ -1,0 +1,11 @@
+{
+    "name": "Azure function",
+    "build": {
+		"dockerfile": "Dockerfile"
+    },
+    "extensions": [
+        "ms-dotnettools.csharp"
+    ],
+    "forwardPorts": [7071],
+    "remoteUser": "vscode"
+}
