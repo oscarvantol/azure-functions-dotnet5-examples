@@ -4,7 +4,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
 
 #if DEBUG
-Debugger.Launch();
+//Debugger.Launch();
 #endif
 
 var host = new HostBuilder()
