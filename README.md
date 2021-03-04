@@ -3,7 +3,10 @@ This is my personal playground for discovering the .NET 5 Azure functions worker
 
 If you are confused, you can read some background here [.NET 5 support on Azure Functions](https://techcommunity.microsoft.com/t5/apps-on-azure/net-5-support-on-azure-functions/ba-p/1973055)
 
-> Everything here is based on https://github.com/Azure/azure-functions-dotnet-worker-preview
+> Everything here is based on
+> https://github.com/Azure/azure-functions-dotnet-worker-preview
+> https://docs.microsoft.com/en-us/azure/azure-functions/dotnet-isolated-process-guide
+> https://github.com/Azure/azure-functions-dotnet-worker/tree/main/samples/SampleApp
 
 ## Nice to know
 
@@ -15,11 +18,11 @@ the TimerInfo class is implemented as a record to keep it clean ;)
 If you were used to the Azure Functions Startup class, it is not here. It is actually now using a HostBuilder that you can find in Program.cs
 
 ### No ILogger method injection?
-Nope, instead you can get FunctionExecutionContext which has the Logger and other goodies.
+Nope, instead you can get ~~FunctionExecutionContext~~ FunctionContext which has the Logger and other goodies.
 
 ### How to run:
 - Install .NET 5.0
-- Get core tools >= 3.0.3160: https://github.com/Azure/azure-functions-core-tools
+- Get core tools >= 3.0.3331: https://github.com/Azure/azure-functions-core-tools
 - Open the project in Visual Studio or VsCode.
 - Open a terminal: 
 ``` 

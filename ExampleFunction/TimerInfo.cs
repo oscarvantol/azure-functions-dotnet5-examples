@@ -2,6 +2,6 @@
 
 namespace ExampleFunction
 {
-    public record TimerInfo1(ScheduleStatus? ScheduleStatus, bool IsPastDue);
+    public record TimerInfo(ScheduleStatus? ScheduleStatus, bool IsPastDue);
     public record ScheduleStatus(DateTime Last, DateTime Next, DateTime LastUpdated);
 }

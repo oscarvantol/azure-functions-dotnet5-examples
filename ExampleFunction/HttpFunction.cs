@@ -1,20 +1,18 @@
-using System.Collections.Generic;
 using System.Net;
-using System.Text.Json;
 using Microsoft.Azure.Functions.Worker;
-using Microsoft.Azure.Functions.Worker.Pipeline;
-using Microsoft.Azure.WebJobs;
-using Microsoft.Azure.WebJobs.Extensions.Http;
+using Microsoft.Azure.Functions.Worker.Http;
 using Microsoft.Extensions.Logging;
 
 namespace ExampleFunction
 {
     public class HttpFunction
     {
-        [FunctionName(nameof(HttpFunction1))]
-        public string HttpFunction1([HttpTrigger(AuthorizationLevel.Anonymous, "get", "post", Route = null)] HttpRequestData req, FunctionExecutionContext functionContext)
+        [Function(nameof(HttpFunction1))]
+        public string HttpFunction1([HttpTrigger(AuthorizationLevel.Anonymous, "get", "post", Route = "test")] HttpRequestData req, FunctionContext functionContext)
         {
-            functionContext.Logger.LogInformation("You called the trigger with http {method}", req.Method);
+            var log = functionContext.GetLogger<HttpFunction>();
+            
+            log.LogInformation("You called the trigger with http {method}", req.Method);
 
             return "great";
         }
