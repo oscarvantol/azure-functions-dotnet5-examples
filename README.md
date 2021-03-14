@@ -13,6 +13,8 @@ If you are confused, you can read some background here [.NET 5 support on Azure 
 ### Why is there a TimerInfo record?
 The timer function depends on the included TimerInfo class, for now it does not work with the normal Microsoft.Azure.WebJobs.TimerInfo
 the TimerInfo class is implemented as a record to keep it clean ;)
+If you are not reading from the timerinfo you can even just define it as an object. 
+
 
 ### Dependency injection in Startup?
 If you were used to the Azure Functions Startup class, it is not here. It is actually now using a HostBuilder that you can find in Program.cs
@@ -22,7 +24,7 @@ Nope, instead you can get ~~FunctionExecutionContext~~ FunctionContext which has
 
 ### How to run:
 - Install .NET 5.0
-- Get core tools >= 3.0.3331: https://github.com/Azure/azure-functions-core-tools
+- Get core tools >= **3.0.3331**: https://github.com/Azure/azure-functions-core-tools
 - Open the project in Visual Studio or VsCode.
 - Open a terminal: 
 ``` 

@@ -4,7 +4,7 @@ using Microsoft.Extensions.Hosting;
 using ExampleFunction;
 
 #if DEBUG
-//System.Diagnostics.Debugger.Launch();
+System.Diagnostics.Debugger.Launch();
 #endif
 
 var host = new HostBuilder()
@@ -13,10 +13,10 @@ var host = new HostBuilder()
         c.AddCommandLine(args);
         //c.AddEnvironmentVariables();
     })
-    .ConfigureFunctionsWorker((c, b) =>
+    .ConfigureFunctionsWorkerDefaults((c, b) =>
     {
+        b.UseExampleMiddleware();
         b.UseFunctionExecutionMiddleware();
-        //b.UseExampleMiddleware();
     })
     .ConfigureServices(s =>
     {

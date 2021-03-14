@@ -1,8 +1,8 @@
-﻿using Microsoft.Azure.Functions.Worker;
-using Microsoft.Azure.Functions.Worker.Pipeline;
+﻿using System.Threading.Tasks;
+using Microsoft.Azure.Functions.Worker;
+using Microsoft.Azure.Functions.Worker.Middleware;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
-using System.Threading.Tasks;
 
 namespace ExampleFunction
 {
@@ -12,9 +12,9 @@ namespace ExampleFunction
         {
             var log = context.GetLogger("middleware");
             log.LogWarning("We are watching you from middleware!");
+
             return next(context);
         }
-
     }
 
     public static class ApplicationBuilderExtensions
@@ -22,17 +22,12 @@ namespace ExampleFunction
         public static IFunctionsWorkerApplicationBuilder UseExampleMiddleware(this IFunctionsWorkerApplicationBuilder builder)
         {
             builder.Services.AddSingleton<ExampleMiddleware>();
-            builder.Use(next =>
-            {
-                return context =>
+            return builder.Use((next) => (context) =>
                 {
                     var middleware = context.InstanceServices.GetRequiredService<ExampleMiddleware>();
-
                     return middleware.Invoke(context, next);
-                };
-            });
-
-            return builder;
+                }
+            );
         }
     }
 }
