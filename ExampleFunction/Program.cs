@@ -13,14 +13,13 @@ var host = new HostBuilder()
         c.AddCommandLine(args);
         //c.AddEnvironmentVariables();
     })
-    .ConfigureFunctionsWorkerDefaults((c, b) =>
+    .ConfigureFunctionsWorkerDefaults(app =>
     {
-        b.UseExampleMiddleware();
-        b.UseFunctionExecutionMiddleware();
+        app.UseMiddleware<ExampleMiddleware>();
     })
     .ConfigureServices(s =>
     {
-
+      
     })
     .Build();
 
