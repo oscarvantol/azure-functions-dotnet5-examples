@@ -15,5 +15,12 @@ namespace ExampleFunction
 
             return "great";
         }
+
+        [Function(nameof(HttpFunction2))]
+        public string HttpFunction2([HttpTrigger(AuthorizationLevel.Anonymous, "get", "post", Route = "testerror")] HttpRequestData req, FunctionContext functionContext)
+        {
+            //Just an example to catch the exception in middleware
+            throw new System.NotImplementedException("catch in middleware");
+        }
     }
 }
