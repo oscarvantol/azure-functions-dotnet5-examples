@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 using Microsoft.Azure.Functions.Worker;
-using Microsoft.Azure.Functions.Worker.Middleware;
+using Microsoft.Azure.Functions.Worker.Middleware; 
 using Microsoft.Extensions.Logging;
 
 namespace ExampleFunction

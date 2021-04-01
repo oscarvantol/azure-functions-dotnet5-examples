@@ -1,10 +1,10 @@
+using ExampleFunction;
 using Microsoft.Azure.Functions.Worker.Configuration;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
-using ExampleFunction;
 
 #if DEBUG
-System.Diagnostics.Debugger.Launch();
+//System.Diagnostics.Debugger.Launch();
 #endif
 
 var host = new HostBuilder()
@@ -19,7 +19,7 @@ var host = new HostBuilder()
     })
     .ConfigureServices(s =>
     {
-      
+
     })
     .Build();
 
