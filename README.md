@@ -1,12 +1,14 @@
 # azure-functions-dotnet5-examples
-This is my personal playground for discovering the .NET 5 Azure functions worker preview, it might turn into a blog later.
+This is my personal playground for discovering the .NET 5 Azure functions worker preview.
 
-If you are confused, you can read some background here [.NET 5 support on Azure Functions](https://techcommunity.microsoft.com/t5/apps-on-azure/net-5-support-on-azure-functions/ba-p/1973055)
 
-> Everything here is based on
+If you are confused, you can read some background here:
+- [Azure Functions in .NET 5 and beyond](https://dev.to/oscarvantol/azure-functions-in-net-5-and-beyond-26d6)
+
+
+> **Everything here is based on**
 > https://github.com/Azure/azure-functions-dotnet-worker-preview
 > https://docs.microsoft.com/en-us/azure/azure-functions/dotnet-isolated-process-guide
-> https://github.com/Azure/azure-functions-dotnet-worker/tree/main/samples/SampleApp
 
 ## Nice to know
 
@@ -33,10 +35,19 @@ func host start --verbose
 The debugger will try to attach to your vs instance.
 ```
 
-> Since preview4 the example was crashing on the UseDevelopmentStorage=true
-> It looks like only azurite (new storage emulator) is supported for now (or it's me)
 
-### How to run Azurite
+### Run a storage emulator
+If you are used to running Azure Functions from Visual Studio you might not know that the tooling will spin up the AzureStorageEmulator for you if you run it. In the config file there is a setting ```"AzureWebJobsStorage": "UseDevelopmentStorage=true"``` and some triggers like TimerTrigger really need to store some state somewhere.
+
+If you do not run the "Microsoft Azure Storage Emulator" or [Azurite](https://github.com/Azure/Azurite) you might encounter the following logs:
+```
+ An unhandled exception has occurred. Host is shutting down.
+ Microsoft.Azure.Storage.Common: No connection could be made because the target machine actively refused it. System.Net.Http: No connection could be made because the target machine actively refused it. System.Private.CoreLib: No connection could be made because the target machine actively refused it.
+ Stopping host...
+ Stopping JobHost
+```
+
+**How to run Azurite**
 ```
 # if you run docker:
 docker run -p 10000:10000 -p 10001:10001 mcr.microsoft.com/azure-storage/azurite

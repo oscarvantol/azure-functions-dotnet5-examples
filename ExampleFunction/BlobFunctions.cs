@@ -7,10 +7,10 @@ using Microsoft.Extensions.Logging;
 namespace ExampleFunction
 {
     public class BlobFunctions
-    {
-        [Function(nameof(BlobFunction2))]
+    { 
+        [Function(nameof(BlobFunction1))]
         [BlobOutput("test-samples-output/{name}-output.txt")]
-        public async Task<string> BlobFunction2(
+        public async Task<string> BlobFunction1(
          [BlobTrigger("test-samples-trigger/{name}")] string content,
          [BlobInput("test-samples-input/sample1.txt")] string inputContent,
          string name,
@@ -27,10 +27,10 @@ namespace ExampleFunction
         }
 
         [Function(nameof(MediaUploadProcessorFunction))]
-        public void MediaUploadProcessorFunction([BlobTrigger("media/{name}", Connection = "AzureWebJobsStorage")] byte[] myBlob, string name, FunctionContext context)
+        public async Task MediaUploadProcessorFunction([BlobTrigger("media/{name}", Connection = "AzureWebJobsStorage")] byte[] myBlob, string name, FunctionContext context)
         {
             var logger = context.GetLogger("BlobExample");
-            logger.LogInformation($"C# Blob trigger function Processed blob\n Name: {name} \n Data: {myBlob?.Length}");
+            logger.LogInformation($"C# Blob trigger function Processed blob\n Name: {name} \n Content length: {myBlob?.Length}");
         }
     }
 }
