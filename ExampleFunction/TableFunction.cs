@@ -22,17 +22,17 @@ namespace ExampleFunction
         {
             public HttpResponseData? HttpResponse { get; set; }
 
-            [TableOutput("Requests", Connection = "AzureWebJobsStorage")]
+            [TableOutput("TestTable", Connection = "AzureWebJobsStorage")]
             public MyTableData? MyTableData { get; set; }
         }
 
         public class MyTableData
         {
-            public string? PartitionKey { get; init; }
+            public string? PartitionKey { get; set; }
 
-            public string? RowKey { get; init; }
+            public string? RowKey { get; set; }
 
-            public string? Text { get; init; }
+            public string? Text { get; set; }
         }
     }
 }
