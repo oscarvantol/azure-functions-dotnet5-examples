@@ -12,17 +12,18 @@ If you are confused, you can read some background here:
 
 ## Nice to know
 
-### Why is there a TimerInfo record?
+~~### Why is there a TimerInfo record?
 The timer function depends on the included TimerInfo class, for now it does not work with the normal Microsoft.Azure.WebJobs.TimerInfo
 the TimerInfo class is implemented as a record to keep it clean ;)
-If you are not reading from the timerinfo you can even just define it as an object. 
+If you are not reading from the timerinfo you can even just define it as an object.~~
+TimerInfo is available in the latest version.
 
 
 ### Dependency injection in Startup?
 If you were used to the Azure Functions Startup class, it is not here. It is actually now using a HostBuilder that you can find in Program.cs
 
 ### No ILogger method injection?
-Nope, instead you can get ~~FunctionExecutionContext~~ FunctionContext which has the Logger and other goodies.
+Nope, instead you can get ~~FunctionExecutionContext~~ FunctionContext which has the Logger and other goodies. Next to that you can inject ILogger<Thing> in the constructor of your functions class
 
 ### How to run:
 - Install .NET 5.0
